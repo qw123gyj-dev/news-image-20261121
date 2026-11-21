@@ -1,63 +1,78 @@
-# news-image-20261121 — The Day in World News: Saturday 21 November 2026
+# news-image-20261121 — One Image, One Day: Saturday 21 November 2026
 
 [![make.fun · news-image-20261121](https://make.fun/badge/news-image-20261121.svg)](https://make.fun/bounty/news-image-20261121?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261121)
 [![rank](https://make.fun/badge/news-image-20261121/qw123gyj-dev/news-image-20261121/rank.svg)](https://make.fun/bounty/news-image-20261121/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261121)
 [![reward](https://make.fun/badge/news-image-20261121/qw123gyj-dev/news-image-20261121/reward.svg)](https://make.fun/bounty/news-image-20261121?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261121)
 
-An entry for the make.fun competition
+An entry for the make.fun bounty
 [news-image-20261121](https://make.fun/bounty/news-image-20261121):
-one image that sums up the world news of Saturday 21 November 2026.
+sum up the world news of Saturday 21 November 2026 in one image.
 
 ## The image
 
-`entry.png` (1024 × 1024, 316,379 bytes, JPEG bytes) is a newspaper
-front page: masthead with the date, one lead story, two second stories,
-four smaller stories — 7 stories, one day. It was built as a hybrid:
+`entry.png` (1024 × 1024, 316,379 bytes, JPEG bytes in a `.png`
+name) is a newspaper front page: masthead and date at the top, one
+lead story, two stories in the second row, four smaller stories
+below — seven stories, one day.
 
-- **Photos are AI-generated** (photorealistic news-photo style, no
-  recognisable faces): a night sky over a city with missile trails
-  and fires on the horizon; a Red Sea container port with smoke
-  columns; a climate summit plenary hall; the New York Stock Exchange
-  at night with red ticker boards; young protesters with blank
-  placards and flares in a European square; a Copenhagen street with
-  Danish flags and a police cordon; and an empty White House briefing
-  room. Each photo was cropped to its slot by hand after checking
-  what the crop would show. The paper grain is the same blank
-  newspaper texture used for the 20 November entry.
-- **All text is typeset in code, not by the image generator:**
-  an HTML + CSS page (Noto Serif / Noto Serif Display) rendered
-  with headless Chromium at exactly 1024 × 1024. Headlines and
-  one-line summaries are verbatim; each story also carries a short
-  body of 3–4 lines drawn only from the verified facts below —
-  nothing invented. The render was checked word by word at full
-  size, three times: round 1 overflowed the page (the bottom stories
-  ran off and the footer was missing), so the layout was tightened,
-  the photos re-cropped and the small-story bodies shortened; round 2
-  fit but the footer was half-clipped; round 3 fits, with every word
-  correct and the footer visible.
+## How it was made
+
+Two tools did two different jobs, and neither was allowed to do the
+other's:
+
+- **Pictures: AI-generated, photorealistic news-photo style, no
+  recognisable faces.** One shot per story: a city sky at night
+  streaked with missile trails, fires glowing on the horizon; a Red
+  Sea container port under columns of smoke; a climate-summit
+  plenary hall; the New York Stock Exchange at night with red
+  ticker boards; young protesters with blank placards and flares in
+  a European square; a Copenhagen street with Danish flags and a
+  police cordon; an empty White House briefing room. Each picture
+  was cropped to fit its slot only after checking what the crop
+  would actually show. The paper grain is the same blank newspaper
+  texture used for the 20 November entry.
+- **Words: typeset by code, never by the image generator.** An
+  HTML + CSS page (Noto Serif / Noto Serif Display) rendered with
+  headless Chromium at exactly 1024 × 1024. Headlines and one-line
+  summaries are verbatim; each story also carries a short body of
+  3–4 lines drawn only from the verified facts listed below —
+  nothing invented. The page was checked word by word at full size,
+  three times over: the first render ran long, pushing the bottom
+  stories off the page and losing the footer entirely, so the layout
+  was tightened, the photos re-cropped and the small-story bodies
+  trimmed; the second render fit but cut the footer in half; the
+  third render fits, with every word correct and the footer fully
+  visible.
 
 ## The program
 
-`main.ts` (Node 22, standard library only) copies `entry.png` to
-`$MAKEFUN_OUTPUT_DIR/entry.png` (default `/output`). No network, no
-randomness, no timestamps: two runs write identical bytes.
+`main.ts` (Node 22, standard library only) copies `entry.png` to the
+output directory and then proves the copy is exact: it checks the
+file exists, that its size matches, and that its sha256 matches the
+original, failing loudly on any mismatch instead of handing the
+grader a broken file. No network, no randomness, no timestamps — two
+runs write identical bytes.
+
+Output directory, in priority order: a path passed as the first
+argument, `$MAKEFUN_OUTPUT_DIR`, or `/output` when neither is set.
 
 Run locally:
 
 ```sh
 mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+# or: node main.ts out
 ```
 
 ## The 7 stories
 
 Every story happened, or was first reported, on Saturday
-21 November 2026, and each was verified against at least two
+21 November 2026, and each was checked against at least two
 independent reputable sources.
 
 1. **Russian missile lands in Poland as Kyiv is hit** — the day's
-   lead: overnight, Russia fired more than 400 drones and over 110
-   missiles at Ukraine, killing at least eight people, six of them
-   in Kyiv, where three bridges across the Dnipro were hit. A
+   lead: overnight, Russia launched more than 400 drones and over
+   110 missiles at Ukraine, killing at least eight people, six of
+   them in Kyiv, where three bridges across the Dnipro were hit. A
    Russian Kh-101 missile came down in south-east Poland, about
    60 km from the border, during European military exercises;
    Prime Minister Donald Tusk called it an intentional provocation
